@@ -15,6 +15,8 @@ export default class Component extends Renderable {
     this.onWatch = this.onWatch.bind(this)
     this.isWatched = options.watch === true
 
+    this.slug = options.slug || property
+
     this._targetObject = object
     this._targetProperty = property
     this._value = object[property]

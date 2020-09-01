@@ -38,7 +38,6 @@ export default class Folder extends Renderable {
 
     this.folders.forEach(folder => folder.dispose())
     this.components.forEach(component => component.dispose())
-    // this.components.forEach(component => console.log(component))
 
     this.$content = null
     this.$head = null
@@ -68,6 +67,21 @@ export default class Folder extends Renderable {
     return folder
   }
 
+  removeFolder (name = '') {
+    let folders = this.folders
+    const folder = folders.filter(folder => {
+      return folder.folderName === name
+    })[0]
+
+    const index = folders.indexOf(folder)
+    if (index > -1) {
+      folders[index].dispose()
+      folders.splice(index, 1)
+    }
+
+    this.folders = folders
+  }
+
   add (object, property, array, options) {
     const component = createComponent(object, property, array, options)
     this.components.push(component)
@@ -84,5 +98,20 @@ export default class Folder extends Renderable {
 
   addColorPicker (...args) {
     return this.addColor(...args)
+  }
+
+  removeComponent(slug) {
+    let components = this.components
+    const component = components.filter(component => {
+      return component.slug === slug
+    })[0]
+
+    const index = components.indexOf(component)
+    if (index > -1) {
+      components[index].dispose()
+      components.splice(index, 1)
+    }
+
+    this.components = components
   }
 }

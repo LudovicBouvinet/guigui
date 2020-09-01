@@ -32,4 +32,8 @@ guigui.addColorPicker($subject.style, 'background', {label: 'color'})
 guigui.add($subject, 'visible').on('update', toggleVisible)
 
 const folder = guigui.addFolder('a folder')
-folder.add($subject, 'wizz')
+folder.add($subject, 'wizz', {slug: 'wizz'})
+
+folder.removeComponent('wizz')
+
+// guigui.removeFolder('a folder')

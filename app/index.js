@@ -47,8 +47,16 @@ function addFolder (...args) {
   return getFirstPanel().addFolder(...args)
 }
 
+function removeFolder(...args) {
+  return getFirstPanel().removeFolder(...args)
+}
+
 function addColorPicker (...args) {
   return getFirstPanel().addColor(...args)
+}
+
+function removeComponent(...args) {
+  return getFirstPanel().removeComponent(...args)
 }
 
 function getPanel (index) {
@@ -78,5 +86,7 @@ module.exports = {
   addColor,
   addColorPicker,
   getPanel,
-  removePanel
+  removePanel,
+  removeFolder,
+  removeComponent
 }
