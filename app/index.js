@@ -19,6 +19,22 @@ function addPanel (name = '') {
   return panel
 }
 
+function removePanel (name = '') {
+  if (name === '') {
+    name = 'Settings'
+  }
+
+  const panel = panels.filter(panel => {
+    return panel.folderName === name
+  })[0]
+
+  const index = panels.indexOf(panel)
+  if (index > -1) {
+    panels[index].dispose()
+    panels.splice(index, 1)
+  }
+}
+
 function add (...args) {
   return getFirstPanel().add(...args)
 }
@@ -61,5 +77,6 @@ module.exports = {
   add,
   addColor,
   addColorPicker,
-  getPanel
+  getPanel,
+  removePanel
 }

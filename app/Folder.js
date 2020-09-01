@@ -22,6 +22,7 @@ export default class Folder extends Renderable {
     super(options, domString)
 
     this.toggle = this.toggle.bind(this)
+    this.dispose = this.dispose.bind(this)
 
     this.folderName = folderName
     this.components = []
@@ -30,6 +31,22 @@ export default class Folder extends Renderable {
     this.$content = this.$el.querySelector('.' + options.classNames[0] + '-content')
     this.$head = this.$el.querySelector('.' + options.classNames[0] + '-head')
     this.$head.addEventListener('click', this.toggle)
+  }
+
+  dispose () {
+    this.$head.removeEventListener('click', this.toggle)
+
+    this.folders.forEach(folder => folder.dispose())
+    this.components.forEach(component => component.dispose())
+    // this.components.forEach(component => console.log(component))
+
+    this.$content = null
+    this.$head = null
+    this.folderName = null
+    this.folders = null
+    this.components = null
+  
+    this.remove()
   }
 
   toggle () {

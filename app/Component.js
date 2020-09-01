@@ -11,6 +11,7 @@ export default class Component extends Renderable {
 
     super(options, domString)
 
+    this.dispose = this.dispose.bind(this)
     this.onWatch = this.onWatch.bind(this)
     this.isWatched = options.watch === true
 
@@ -61,5 +62,19 @@ export default class Component extends Renderable {
     if (this.isWatched) {
       this._watchInterval = setInterval(this.onWatch, 100)
     }
+  }
+
+  dispose () {
+    this.remove()
+
+    this.isWatched = false 
+
+    clearInterval(this._watchInterval)
+
+    this._targetObject = null
+    this._targetProperty = null
+    this._value = null
+
+    this._events = []
   }
 }

@@ -16,4 +16,8 @@ export default class Panel extends Folder {
       domString
     )
   }
+
+  dispose () {
+    super.dispose()
+  }
 }
