@@ -76,6 +76,7 @@ export default class Folder extends Renderable {
     const index = folders.indexOf(folder)
     if (index > -1) {
       folders[index].dispose()
+      delete folders[index]
       folders.splice(index, 1)
     }
 
